@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'screens/home_screen.dart'; // Adjust this import path if needed
 
-void main() {
-  runApp(const MainApp());
-}
+void main() => runApp(const PerezFacebook());
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class PerezFacebook extends StatelessWidget {
+  const PerezFacebook({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!, Ron Jacob A. Perez'))),
+    return ScreenUtilInit( // Changed from ScreenUtilUnit
+      designSize: const Size(412, 715),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Facebook Replication',
+          initialRoute: '/home',
+          routes: {
+            '/home': (context) => const HomeScreen(),
+          },
+        );
+      },
     );
-  }
+  } 
 }
