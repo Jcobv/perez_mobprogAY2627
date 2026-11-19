@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../constants.dart';
 import 'custom_text.dart';
 
@@ -9,6 +10,7 @@ class NewsFeedCard extends StatelessWidget {
   final String date;
   final int numOfLikes;
   final bool hasImage;
+
   const NewsFeedCard({
     super.key,
     required this.userName,
@@ -34,9 +36,7 @@ class NewsFeedCard extends StatelessWidget {
                   radius: ScreenUtil().setSp(15),
                   backgroundImage: const AssetImage('assets/images/owl.jpg'),
                 ),
-                SizedBox(
-                  width: ScreenUtil().setWidth(10),
-                ),
+                SizedBox(width: ScreenUtil().setWidth(10)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -55,9 +55,7 @@ class NewsFeedCard extends StatelessWidget {
                           fontSize: ScreenUtil().setSp(12),
                           color: Colors.grey,
                         ),
-                        SizedBox(
-                          width: ScreenUtil().setWidth(3),
-                        ),
+                        SizedBox(width: ScreenUtil().setWidth(3)),
                         Icon(
                           Icons.public,
                           color: Colors.grey,
@@ -80,12 +78,11 @@ class NewsFeedCard extends StatelessWidget {
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
             hasImage
-                ? Container(
-                    height: ScreenUtil().setHeight(180),
+                ? Image.network(
+                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
                     width: double.infinity,
-                    color: Colors.grey[300],
-                    child: Icon(Icons.image,
-                        size: ScreenUtil().setSp(50), color: Colors.grey),
+                    height: ScreenUtil().setHeight(180),
+                    fit: BoxFit.cover,
                   )
                 : const SizedBox.shrink(),
             Row(
@@ -114,9 +111,7 @@ class NewsFeedCard extends StatelessWidget {
                   radius: ScreenUtil().setSp(15),
                   backgroundImage: const AssetImage('assets/images/owl.jpg'),
                 ),
-                SizedBox(
-                  width: ScreenUtil().setWidth(10),
-                ),
+                SizedBox(width: ScreenUtil().setWidth(10)),
                 Container(
                   padding: EdgeInsets.fromLTRB(ScreenUtil().setSp(10), 0, 0, 0),
                   alignment: Alignment.centerLeft,
@@ -125,7 +120,8 @@ class NewsFeedCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.all(
-                        Radius.circular(ScreenUtil().setSp(10))),
+                      Radius.circular(ScreenUtil().setSp(10)),
+                    ),
                   ),
                   child: CustomText(
                     text: 'Write a comment...',
@@ -135,9 +131,7 @@ class NewsFeedCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: ScreenUtil().setHeight(10),
-            ),
+            SizedBox(height: ScreenUtil().setHeight(10)),
             CustomText(
               text: 'View comments',
               fontSize: ScreenUtil().setSp(12),
@@ -155,6 +149,7 @@ class ActionButton extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onPressed;
+
   const ActionButton({
     super.key,
     required this.icon,
