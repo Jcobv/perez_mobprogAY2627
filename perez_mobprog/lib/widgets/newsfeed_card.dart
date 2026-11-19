@@ -30,7 +30,10 @@ class NewsFeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.person),
+                CircleAvatar(
+                  radius: ScreenUtil().setSp(15),
+                  backgroundImage: const AssetImage('assets/images/owl.jpg'),
+                ),
                 SizedBox(
                   width: ScreenUtil().setWidth(10),
                 ),
@@ -76,57 +79,41 @@ class NewsFeedCard extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
-            hasImage == true
-                ? const Placeholder()
-                : SizedBox(
-                    height: ScreenUtil().setHeight(1),
-                  ),
+            hasImage
+                ? Container(
+                    height: ScreenUtil().setHeight(180),
+                    width: double.infinity,
+                    color: Colors.grey[300],
+                    child: Icon(Icons.image,
+                        size: ScreenUtil().setSp(50), color: Colors.grey),
+                  )
+                : const SizedBox.shrink(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton.icon(
-                  onPressed: () {
-                    print('Liked');
-                  },
-                  icon: const Icon(
-                    Icons.thumb_up,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: numOfLikes.toString(),
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
-                ),
-                TextButton.icon(
+                ActionButton(
+                  icon: Icons.thumb_up,
+                  label: numOfLikes.toString(),
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.comment,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: 'Comment',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
                 ),
-                TextButton.icon(
+                ActionButton(
+                  icon: Icons.comment,
+                  label: 'Comment',
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.redo,
-                    color: FB_DARK_PRIMARY,
-                  ),
-                  label: CustomText(
-                    text: 'Share',
-                    fontSize: ScreenUtil().setSp(12),
-                    color: FB_DARK_PRIMARY,
-                  ),
+                ),
+                ActionButton(
+                  icon: Icons.redo,
+                  label: 'Share',
+                  onPressed: () {},
                 ),
               ],
             ),
             Row(
               children: [
-                Icon(Icons.person),
+                CircleAvatar(
+                  radius: ScreenUtil().setSp(15),
+                  backgroundImage: const AssetImage('assets/images/owl.jpg'),
+                ),
                 SizedBox(
                   width: ScreenUtil().setWidth(10),
                 ),
@@ -159,6 +146,31 @@ class NewsFeedCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+  const ActionButton({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, color: FB_DARK_PRIMARY),
+      label: CustomText(
+        text: label,
+        fontSize: ScreenUtil().setSp(12),
+        color: FB_DARK_PRIMARY,
       ),
     );
   }
