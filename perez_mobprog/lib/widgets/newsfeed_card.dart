@@ -10,6 +10,7 @@ class NewsFeedCard extends StatelessWidget {
   final String date;
   final int numOfLikes;
   final bool hasImage;
+  final String? imagePath;
 
   const NewsFeedCard({
     super.key,
@@ -17,6 +18,7 @@ class NewsFeedCard extends StatelessWidget {
     required this.postContent,
     this.numOfLikes = 0,
     this.hasImage = false,
+    this.imagePath,
     required this.date,
   });
 
@@ -34,7 +36,7 @@ class NewsFeedCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: ScreenUtil().setSp(15),
-                  backgroundImage: const AssetImage('assets/images/owl.jpg'),
+                  backgroundImage: const AssetImage('assets/images/Papoy.jpg'),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(10)),
                 Column(
@@ -78,12 +80,19 @@ class NewsFeedCard extends StatelessWidget {
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
             hasImage
-                ? Image.network(
-                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                    width: double.infinity,
-                    height: ScreenUtil().setHeight(180),
-                    fit: BoxFit.cover,
-                  )
+                ? (imagePath != null
+                      ? Image.asset(
+                          imagePath!,
+                          width: double.infinity,
+                          height: ScreenUtil().setHeight(180),
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                          width: double.infinity,
+                          height: ScreenUtil().setHeight(180),
+                          fit: BoxFit.cover,
+                        ))
                 : const SizedBox.shrink(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +118,7 @@ class NewsFeedCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: ScreenUtil().setSp(15),
-                  backgroundImage: const AssetImage('assets/images/owl.jpg'),
+                  backgroundImage: const AssetImage('assets/images/Papoy.jpg'),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(10)),
                 Container(

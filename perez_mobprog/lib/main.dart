@@ -16,7 +16,7 @@ class PerezFacebook extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Facebook Replication',
+          title: 'JacoBook',
           initialRoute: '/home',
           routes: {
             '/home': (context) => const HomeScreen(),
