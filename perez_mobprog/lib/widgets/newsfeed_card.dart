@@ -11,6 +11,7 @@ class NewsFeedCard extends StatelessWidget {
   final int numOfLikes;
   final bool hasImage;
   final String? imagePath;
+  final String? profileImagePath;
 
   const NewsFeedCard({
     super.key,
@@ -19,6 +20,7 @@ class NewsFeedCard extends StatelessWidget {
     this.numOfLikes = 0,
     this.hasImage = false,
     this.imagePath,
+    this.profileImagePath,
     required this.date,
   });
 
@@ -36,7 +38,9 @@ class NewsFeedCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: ScreenUtil().setSp(15),
-                  backgroundImage: const AssetImage('assets/images/Papoy.jpg'),
+                  backgroundImage: AssetImage(
+                    profileImagePath ?? 'assets/images/Papoy.jpg',
+                  ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(10)),
                 Column(
@@ -118,7 +122,9 @@ class NewsFeedCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: ScreenUtil().setSp(15),
-                  backgroundImage: const AssetImage('assets/images/Papoy.jpg'),
+                  backgroundImage: AssetImage(
+                    profileImagePath ?? 'assets/images/Papoy.jpg',
+                  ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(10)),
                 Container(
